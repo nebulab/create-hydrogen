@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+if ! head -1 "$1" | grep -qE "Initial commit|Merge [^\r\n]+|^(feat|fix|chore|change|docs|test|deprecate|remove|style|refactor|security|perf|build|ci|revert)(\(.+?\))?: .{1,}$"; then
+    echo "Aborting commit. Your commit message is not formatted as a conventional commit." >&2
+    exit 1
+fi

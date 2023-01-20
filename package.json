@@ -1,0 +1,27 @@
+{
+  "name": "@nebulab/create-hydrogen",
+  "version": "1.0.0",
+  "description": "A Hydrogen template with CI/CD (deployed to Vercel) and Git Hooks",
+  "main": "index.js",
+  "bin": {
+    "create-hydrogen": "bin/cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nebulab/create-hydrogen.git"
+  },
+  "keywords": [
+    "hydrogen",
+    "template",
+    "shopify"
+  ],
+  "author": "Daniel Bergholz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nebulab/create-hydrogen/issues"
+  },
+  "homepage": "https://github.com/nebulab/create-hydrogen#readme"
+}
