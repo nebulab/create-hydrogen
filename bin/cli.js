@@ -18,6 +18,7 @@ const storeInFile = (data, path) => {
     fs.writeFileSync(path, JSON.stringify(data, null, 2))
   } catch (err) {
     console.error(`Failed to write in the file ${path}`, err)
+    process.exit(-1)
   }
 }
 
@@ -42,6 +43,14 @@ runCommand(
 
 const files = fs.readdirSync(`./${templateHash}`)
 const hydrogenFolderName = files.find((file) => !initialFiles.includes(file))
+
+if (!hydrogenFolderName) {
+  console.error(
+    'Error: Could not find the folder created by Hydrogen, exiting...'
+  )
+  process.exit(-1)
+}
+
 const hydrogenFolderPath = `./${templateHash}/${hydrogenFolderName}`
 
 // adding test scripts to package.json
