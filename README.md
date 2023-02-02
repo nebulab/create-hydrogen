@@ -97,6 +97,19 @@ Using NPM:
 npm init @nebulab/hydrogen --npm
 ```
 
+Using the latest version:
+
+```bash
+npm init @nebulab/hydrogen@latest
+```
+
+If for some reason the above commands don't work, you could also install the package globaly:
+
+```bash
+npm i -g @nebulab/create-hydrogen
+create-hydrogen
+```
+
 ## Running the dev server
 
 Then `cd` into the new directory and run:

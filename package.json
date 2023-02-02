@@ -1,6 +1,6 @@
 {
   "name": "@nebulab/create-hydrogen",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A Hydrogen template with CI/CD (deployed to Vercel) and Git Hooks",
   "main": "src/cli.js",
   "bin": "bin/create-hydrogen",
