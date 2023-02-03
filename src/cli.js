@@ -4,7 +4,12 @@ import Listr from 'listr'
 import ncp from 'ncp'
 import path from 'path'
 import { promisify } from 'util'
-import { getProjectName, editPackageJson, initHydrogen } from './utils'
+import {
+  getProjectName,
+  editPackageJson,
+  editHydrogenConfig,
+  initHydrogen,
+} from './utils'
 
 const access = promisify(fs.access)
 const copy = promisify(ncp)
@@ -29,15 +34,19 @@ export async function cli(args) {
   const tasks = new Listr([
     {
       title: 'Initialize Hydrogen',
-      task: async () => initHydrogen(useNpm, projectName),
+      task: () => initHydrogen(useNpm, projectName),
+    },
+    {
+      title: 'Edit hydrogen config file',
+      task: () => editHydrogenConfig(projectPath),
     },
     {
       title: 'Edit package.json',
-      task: () => editPackageJson(projectPath, templatesPath),
+      task: () => editPackageJson(projectPath),
     },
     {
       title: 'Copy template files',
-      task: async () => await copy(templatesPath, projectPath),
+      task: () => copy(templatesPath, projectPath),
     },
   ])
 

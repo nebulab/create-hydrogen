@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a template for [Hydrogen](https://shopify.dev/custom-storefronts/hydrogen), a React framework and SDK that you can use to build fast and dynamic Shopify custom storefronts. To be more specific, it uses the [Demo Store](https://shopify.dev/custom-storefronts/hydrogen/templates#demo-store-template) template with [Typescript](https://www.typescriptlang.org/).
+This is a template for [Hydrogen](https://shopify.dev/custom-storefronts/hydrogen), a React framework and SDK that you can use to build fast and dynamic Shopify custom storefronts. To be more specific, it uses the [Demo Store](https://shopify.dev/custom-storefronts/hydrogen/templates#demo-store-template) template.
 
 ## What's included in this template
 

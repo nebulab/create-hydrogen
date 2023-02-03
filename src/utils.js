@@ -1,7 +1,8 @@
 import chalk from 'chalk'
 import { execSync } from 'child_process'
-import { readFileSync, writeFileSync } from 'fs'
+import { readFileSync, writeFileSync, readdirSync } from 'fs'
 import inquirer from 'inquirer'
+import replace from 'replace-in-file'
 
 const runCommand = (command) => {
   try {
@@ -40,21 +41,7 @@ export const getProjectName = async () => {
 }
 
 export const initHydrogen = (useNpm, projectName) => {
-  if (useNpm === undefined || !projectName) {
-    console.error(
-      `\n${chalk.bold.red(
-        'ERROR:'
-      )} Missing variables "useNpm" or "projectName" inside "initHydrogen" function`
-    )
-    process.exit(1)
-  }
-
-  console.log(`\nInitializing Hydrogen with ${useNpm ? 'npm' : 'yarn'}...`)
-  console.log(
-    "Use the flag '--npm' if you want to install everything with NPM\n"
-  )
-
-  const args = `--template demo-store --name ${projectName} --ts`
+  const args = `--template demo-store --name ${projectName}`
 
   runCommand(
     useNpm
@@ -63,10 +50,34 @@ export const initHydrogen = (useNpm, projectName) => {
   )
 }
 
-export const editPackageJson = (projectPath, templatesPath) => {
-  const obj = JSON.parse(readFileSync(`${projectPath}/package.json`))
-  obj.scripts['test:ci:no-client'] =
-    'yarn build --no-client -t node && vitest run'
-  obj.scripts.prepare = 'npx husky install && chmod ug+x .husky/*'
-  storeInFile(obj, `${templatesPath}/package.json`)
+export const editPackageJson = (projectPath) => {
+  const packageJsonPath = `${projectPath}/package.json`
+
+  try {
+    const packageJson = JSON.parse(readFileSync(packageJsonPath))
+    packageJson.scripts['test:ci:no-client'] =
+      'yarn build --no-client -t node && vitest run'
+    packageJson.scripts.prepare = 'npx husky install && chmod ug+x .husky/*'
+    storeInFile(packageJson, packageJsonPath)
+  } catch (error) {
+    console.error(`\n${chalk.bold.red('ERROR:')} ${error}`)
+    process.exit(1)
+  }
+}
+
+export const editHydrogenConfig = async (projectPath) => {
+  const files = readdirSync(projectPath)
+  const configFileName = files.find((file) => file.includes('hydrogen.config'))
+  const configFilePath = `${projectPath}/${configFileName}`
+
+  try {
+    await replace({
+      files: configFilePath,
+      from: /Oxygen\?\.env\?\./g,
+      to: 'import.meta.env.',
+    })
+  } catch (error) {
+    console.error(`\n${chalk.bold.red('ERROR:')} ${error}`)
+    process.exit(1)
+  }
 }
