@@ -40,11 +40,32 @@ export const getProjectName = async () => {
   return projectName
 }
 
-export const initHydrogen = (useNpm, projectName) => {
+export const getPackageManager = async () => {
+  const { packageManager } = await inquirer.prompt([
+    {
+      type: 'list',
+      name: 'packageManager',
+      message: 'Choose a package manager for installation:',
+      choices: ['NPM', 'Yarn'],
+      default: 'NPM',
+    },
+  ])
+
+  if (!packageManager) {
+    console.error(
+      `\n${chalk.bold.red('ERROR:')} You must choose a package manager`
+    )
+    process.exit(1)
+  }
+
+  return packageManager.toLowerCase()
+}
+
+export const initHydrogen = async (packageManager, projectName) => {
   const args = `--template demo-store --name ${projectName}`
 
   runCommand(
-    useNpm
+    packageManager === 'npm'
       ? `npm init @shopify/hydrogen -- ${args}`
       : `yarn create @shopify/hydrogen ${args}`
   )

@@ -6,6 +6,7 @@ import path from 'path'
 import { promisify } from 'util'
 import {
   getProjectName,
+  getPackageManager,
   editPackageJson,
   editHydrogenConfig,
   initHydrogen,
@@ -14,9 +15,9 @@ import {
 const access = promisify(fs.access)
 const copy = promisify(ncp)
 
-export async function cli(args) {
-  const useNpm = args.includes('--npm')
+export async function cli() {
   const projectName = await getProjectName()
+  const packageManager = await getPackageManager()
   const projectPath = `${process.cwd()}/${projectName}`
   const cliPath = new URL(import.meta.url).pathname
   const templatesPath = path.resolve(
@@ -34,7 +35,7 @@ export async function cli(args) {
   const tasks = new Listr([
     {
       title: 'Initialize Hydrogen',
-      task: () => initHydrogen(useNpm, projectName),
+      task: () => initHydrogen(packageManager, projectName),
     },
     {
       title: 'Edit hydrogen config file',

@@ -85,19 +85,21 @@ As mentioned before, this project uses [GitHub Actions](https://docs.github.com/
 
 ## Generating this template
 
-Using yarn:
+Run one of the following commands:
 
 ```bash
 npm init @nebulab/hydrogen
 ```
 
-Using NPM:
-
 ```bash
-npm init @nebulab/hydrogen --npm
+npx @nebulab/create-hydrogen
 ```
 
-Using the latest version:
+```bash
+yarn create @nebulab/hydrogen
+```
+
+Using the latest version (recommended):
 
 ```bash
 npm init @nebulab/hydrogen@latest
