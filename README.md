@@ -1,8 +1,14 @@
 <img width="1822" alt="image" src="https://user-images.githubusercontent.com/39206652/209194447-05821b19-6637-4cc2-aaa9-08ec60ff6e89.png">
 
+## Deprecation Warning
+
+At the beginning of 2023, the Hydrogen ecosystem changed a lot. The framework was rebuilt from scratch using [Remix](https://remix.run/) and [Oxygen](https://shopify.dev/docs/custom-storefronts/oxygen) is now available for all Shopify plans. The main objective of this template was to help integrate hydrogen with Vercel, and now that Oxygen is available to everyone, there is no use for it anymore. Furthermore, after the major rewrite of hydrogen, a lot of configuration files are no longer compatible with this template.
+
+So, this script is now deprecated. It is highly encouraged to start a new Hydrogen application following the official documentation. This README, however, still contains some useful information that might be worth reading.
+
 ## Overview
 
-This is a template for [Hydrogen](https://shopify.dev/custom-storefronts/hydrogen), a React framework and SDK that you can use to build fast and dynamic Shopify custom storefronts. To be more specific, it uses the [Demo Store](https://shopify.dev/custom-storefronts/hydrogen/templates#demo-store-template) template.
+This is a template for [Hydrogen](https://shopify.dev/custom-storefronts/hydrogen) version 1, a React framework and SDK that you can use to build fast and dynamic Shopify custom storefronts. To be more specific, it uses the [Demo Store](https://shopify.dev/custom-storefronts/hydrogen/templates#demo-store-template) template.
 
 ## What's included in this template
 
@@ -131,7 +137,7 @@ yarn build
 
 ## Previewing a production build
 
-To run a local preview of your Hydrogen app in an environment similar to [Oxygen](https://shopify.dev/custom-storefronts/hydrogen/deployment), build your Hydrogen app and then run `yarn preview`:
+To run a local preview of your Hydrogen app in an environment similar to [Oxygen](https://shopify.dev/docs/custom-storefronts/oxygen), build your Hydrogen app and then run `yarn preview`:
 
 ```bash
 yarn build
